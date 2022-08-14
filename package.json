@@ -19,7 +19,7 @@
     "preinstall": "npm run check:node",
     "start:db": "cd src/api && docker-compose up db",
     "start:api": "cd src/api && dotnet build && dotnet run",
-    "start:frontend": "lerna run start"
+    "start:frontend": "lerna run dev"
   },
   "repository": {
     "type": "git",

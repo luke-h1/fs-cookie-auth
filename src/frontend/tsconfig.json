@@ -3,8 +3,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "incremental": true,
-    "paths": {
-      "@frontend/*": ["src/*"]
-    }  
-  }
+    "target": "es5"
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }
