@@ -1,4 +1,5 @@
 using api.Data;
+using api.helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -23,7 +24,7 @@ public class Startup
     services.AddControllers();
 
     services.AddScoped<IUserRepository, UserRepository>();
-
+    services.AddScoped<JwtService>();
 
     services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "api", Version = "v1" }); });
   }
