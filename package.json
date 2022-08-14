@@ -16,7 +16,10 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,html}\"",
     "format:check": "prettier --list-different \"src/**/*.{js,jsx,ts,tsx,css,scss,html}\"",
     "check:node": "check-node-version --node 16 --npm 8",
-    "preinstall": "npm run check:node"
+    "preinstall": "npm run check:node",
+    "start:db": "cd src/api && docker-compose up db",
+    "start:api": "cd src/api && dotnet build && dotnet run",
+    "start:frontend": "lerna run start"
   },
   "repository": {
     "type": "git",
