@@ -60,20 +60,20 @@ public class AuthController : Controller
       // Secure = // probably would get this from config i.e. frontendUrl = 'deployed url' ? true : false
     });
     
-    return Ok(new { message = "Succesfully logged in" });
+    return Ok(new { message = "Successfully logged in" });
   }
 
   [HttpGet("user")]
   [ProducesResponseType(200)]
   [ProducesResponseType(401)]
-  public IActionResult User()
+  public IActionResult CurrentUser()
   {
     try
     {
       var jwt = Request.Cookies["token"];
       var token = _jwtService.Verify(jwt);
 
-      int userId = int.Parse(token.Issuer);
+      var userId = int.Parse(token.Issuer);
 
       var user = _repository.FindById(userId);
       
@@ -81,7 +81,16 @@ public class AuthController : Controller
     }
     catch (Exception e)
     { 
+      Console.WriteLine(e);
       return Unauthorized();
     }
+  }
+
+  [HttpPost("logout")]
+  [ProducesResponseType(200)]
+  public IActionResult logout()
+  {
+    Response.Cookies.Delete("token");
+    return Ok(new { message = "Successfully logged out" });
   }
 }
