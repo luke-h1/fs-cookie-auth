@@ -38,9 +38,6 @@ public class Startup
       app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "api v1"));
     }
 
-
-    app.UseRouting();
-
     app.UseCors(opts =>
     {
       opts
@@ -49,6 +46,8 @@ public class Startup
         .AllowCredentials()
         .WithOrigins("http://localhost:3000");
     });
+    
+    app.UseRouting();
 
     app.UseAuthorization();
 

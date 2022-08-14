@@ -4,18 +4,26 @@ namespace api.Data;
 
 public class UserRepository : IUserRepository
 {
+  private readonly UserContext _context;
+
+  public UserRepository(UserContext context)
+  {
+    _context = context;
+  }
   public User Create(User user)
   {
-    throw new NotImplementedException();
+    _context.Users.Add(user);
+    user.Id = _context.SaveChanges();
+    return user;
   }
 
   public User FindById(int id)
   {
-    throw new NotImplementedException();
+    return _context.Users.FirstOrDefault(u => u.Id == id);
   }
 
   public User FindByEmail(string email)
   {
-    throw new NotImplementedException();
+    return _context.Users.FirstOrDefault(u => u.Email == email);
   }
 }
